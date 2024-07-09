@@ -1,5 +1,4 @@
 <h1><span style="color:#2d7eea">Google Cloud Cortex Framework for SAP</span></h1>
-*probando un commit
 <h2><span style="color:#2d7eea">What does this Looker Block do for me?</span></h2>
 
 Gain faster insights into your Order to Cash, Finance, and Inventory data with these Dashboards and Explores based on the SAP Cortex Data Foundation. Leverage or customize this Looker model to:
@@ -117,5 +116,6 @@ The Report Table provides an easy-to-read table style designed especially for fi
 <h2><span style="color:#2d7eea">Additional Resources</span></h2>
 
 To learn more about LookML and how to develop visit:
+
 * [Looker Best Practices](https://cloud.google.com/looker/docs/best-practices/home)
 * [Looker/Google Cloud Training](https://www.cloudskillsboost.google/catalog)
