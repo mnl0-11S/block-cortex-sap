@@ -1,20 +1,20 @@
 constant: CONNECTION_NAME {
-  value: "cortex"
+  value: "conexion-camposol"
   export: override_required
 }
 
 constant: GCP_PROJECT {
-  value: "GCP Project ID"
+  value: "pry-cortex-camposol"
   export: override_required
 }
 
 constant: REPORTING_DATASET {
-  value: "Reporting Dataset Name"
+  value: "REPORTING_PRD"
   export: override_required
 }
 
 constant: CLIENT {
-  value: "Client ID"
+  value: "300"
   export: override_required
 }
 
