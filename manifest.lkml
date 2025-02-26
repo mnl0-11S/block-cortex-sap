@@ -4,7 +4,7 @@ constant: CONNECTION_NAME {
 }
 
 constant: GCP_PROJECT {
-  value: "pry-cortex-camposol"
+  value: "co-grupoexito-sap-denodo-poc"
   export: override_required
 }
 
