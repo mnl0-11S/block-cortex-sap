@@ -1,5 +1,5 @@
 constant: CONNECTION_NAME {
-  value: "conexion-camposol"
+  value: "cortex-looker"
   export: override_required
 }
 
@@ -14,7 +14,7 @@ constant: REPORTING_DATASET {
 }
 
 constant: CLIENT {
-  value: "300"
+  value: "400"
   export: override_required
 }
 
