@@ -1975,13 +1975,14 @@ view: sales_orders {
         AND ${item_posnr} = ${reference_item_vgpos},
       'Returned',
       'NotReturned'),
-    IF( ${preceding_doc_category_vgtyp} = 'M' AND ${reference_document_vgbel} = ${billing.document_number_of_the_reference_document_vgbel}
+    IF( ${preceding_doc_category_vgtyp} = 'M'
       AND ${reference_item_vgpos} = ${billing.item_number_of_the_reference_item_vgpos}
       AND ${billing.sales_document_aubel} = ${sales_document_vbeln}
       AND ${billing.sales_document_item_aupos} = ${item_posnr},
       'Returned',
       'NotReturned') ) ;;
     hidden: no
+    # AND ${reference_document_vgbel} = ${billing.document_number_of_the_reference_document_vgbel}
   }
 
   measure: count_return_order {

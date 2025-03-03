@@ -8,7 +8,7 @@ view: deliveries {
   # Here's what a typical dimension looks like in LookML.
   # A dimension is a groupable field that can be used to filter query results.
   # This dimension will be called "Account Assignment Category Knttp" in Explore.
-  
+
   fields_hidden_by_default: yes
 
   dimension: key {
@@ -16,7 +16,7 @@ view: deliveries {
     primary_key: yes
     sql: CONCAT(${client_mandt},${delivery_vbeln},${delivery_item_posnr});;
   }
-  
+
   dimension: OnTimeDelivery {
     type: string
     sql: IF( ${date__proof_of_delivery___podat_date}<=${delivery_date_lfdat_date},
@@ -58,9 +58,10 @@ view: deliveries {
     hidden: no
   }
 
+##se elimino el is not null
   dimension: Delivery {
     type: yesno
-    sql:${date__proof_of_delivery___podat_date} is not null  ;;
+    sql:${date__proof_of_delivery___podat_date} is null ;;
     hidden: no
   }
 

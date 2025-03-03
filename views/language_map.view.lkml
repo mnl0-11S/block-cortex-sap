@@ -45,7 +45,7 @@ view: language_map{
   }
 
   dimension: looker_locale {
-    hidden: yes
+    hidden: no
     type: string
     sql: ${TABLE}.Looker_Locale ;;
   }

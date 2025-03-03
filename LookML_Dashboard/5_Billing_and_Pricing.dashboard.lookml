@@ -172,7 +172,7 @@
     type: single_value
     fields: [sales_orders.dash_nav]
     filters:
-      sales_orders.creation_date_erdat_date: 2022/01/01 to 2022/04/22
+      sales_orders.creation_date_erdat_date: 2023/01/01 to 2023/04/30
     limit: 500
     column_limit: 50
     custom_color_enabled: true
@@ -215,7 +215,7 @@
   - name: Currency
     title: Currency
     type: field_filter
-    default_value: USD
+    default_value: COP
     allow_multiple_values: true
     required: true
     ui_config:

@@ -47,12 +47,13 @@ sql_always_where: ${Client_ID} = "@{CLIENT}" ;;
   }
 }
 
+### se pasa valor fijo sql_on: ${language_map.looker_locale}='{{ _user_attributes['locale'] }}'
 explore: sales_orders {
 
   join: language_map {
     fields: []
     type: left_outer
-    sql_on: ${language_map.looker_locale}='{{ _user_attributes['locale'] }}' ;;
+    sql_on: ${language_map.looker_locale}='es_ES' ;;
     relationship: many_to_one
   }
 
@@ -190,9 +191,11 @@ explore: sales_orders {
 
   ########################################### Finanace Dashboards ########################################################################
 
+###se modifico el language_map.looker_locale {{ _user_attributes['locale'] }} por es_ES####
 explore: vendor_performance {
   sql_always_where: ${vendor_performance.client_mandt} = '{{ _user_attributes['client_id_rep'] }}'
-    and ${language_map.looker_locale}='{{ _user_attributes['locale'] }}'
+
+    and ${language_map.looker_locale}='es_ES'
     ;;
 
   join: language_map {
@@ -247,10 +250,10 @@ explore: materials_valuation_v2 {
 
 ################################################ Supply Chain #######################################################
 
-
+###${language_map.looker_locale}='{{ _user_attributes['locale'] }}'
 explore: inventory_metrics_overview {
   sql_always_where: ${inventory_metrics_overview.client_mandt} = '{{ _user_attributes['client_id_rep'] }}'
-  and ${language_map.looker_locale}='{{ _user_attributes['locale'] }}';;
+  and ${language_map.looker_locale}='es_ES';;
 
   join: inventory_by_plant {
     type: left_outer
@@ -268,10 +271,10 @@ explore: inventory_metrics_overview {
     relationship: many_to_one
   }
 }
-
+###${language_map.looker_locale}='{{ _user_attributes['locale'] }} se pasa valor fijo
 explore: inventory_by_plant {
     sql_always_where: ${inventory_by_plant.client_mandt} = '{{ _user_attributes['client_id_rep'] }}'
-        and ${language_map.looker_locale}='{{ _user_attributes['locale'] }}'
+        and ${language_map.looker_locale}='es_ES'
     ;;
 
   join: language_map {
