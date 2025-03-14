@@ -1,15 +1,15 @@
 constant: CONNECTION_NAME {
-  value: "cortex-looker"
+  value: "cortex"
   export: override_required
 }
 
 constant: GCP_PROJECT {
-  value: "co-grupoexito-sap-denodo-poc"
+  value: "onus-dev-proy-asistent-virtual"
   export: override_required
 }
 
 constant: REPORTING_DATASET {
-  value: "REPORTING_PRD"
+  value: "REPORTING_ECD"
   export: override_required
 }
 
