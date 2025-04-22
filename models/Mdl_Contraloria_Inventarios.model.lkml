@@ -25,7 +25,6 @@ explore: inventory_metrics_overview {
     sql_on: ${inventory_by_plant.client_mandt} = ${inventory_metrics_overview.client_mandt}
         and ${inventory_by_plant.company_code_bukrs} = ${inventory_metrics_overview.company_code_bukrs}
       ;;
-
   }
 }
 
