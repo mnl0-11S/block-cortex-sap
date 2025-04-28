@@ -3,7 +3,7 @@ view: inventory_by_plant {
     sql: select * from `crp-pro-cx-semantica.mus_pro_sap_ctx.InventoryByPlant`;;
   }
 
-  fields_hidden_by_default: yes
+  fields_hidden_by_default: no
 
   dimension: key {
     type: string

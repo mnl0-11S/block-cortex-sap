@@ -4,7 +4,7 @@ view: inventory_metrics_overview {
       ;;
   }
 
-  fields_hidden_by_default: yes
+  fields_hidden_by_default: no
 
   dimension: key {
     type: string

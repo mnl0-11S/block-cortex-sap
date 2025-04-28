@@ -16,7 +16,9 @@ named_value_format: Greek_Number_Format {
 }
 
 explore: inventory_metrics_overview {
-  sql_always_where: ${inventory_metrics_overview.client_mandt} = '400' ;;
+  sql_always_where: ${inventory_metrics_overview.client_mandt} = '{{ _user_attributes['client_id_rep'] }}'
+  and ${language_map.looker_locale} = '{{ _user_attributes['locale'] }}'
+  ;;
 
   join: inventory_by_plant {
     type: left_outer
@@ -26,8 +28,25 @@ explore: inventory_metrics_overview {
         and ${inventory_by_plant.company_code_bukrs} = ${inventory_metrics_overview.company_code_bukrs}
       ;;
   }
+
+  join: language_map {
+    fields: []
+    type: left_outer
+    sql_on: ${inventory_metrics_overview.language_spras} = ${language_map.language_key} ;;
+    relationship: many_to_one
+  }
+
 }
 
 explore: inventory_by_plant {
-  sql_always_where: ${inventory_by_plant.client_mandt} = '400' ;;
+  sql_always_where: ${inventory_by_plant.client_mandt} = '{{ _user_attributes['client_id_rep'] }}'
+        and ${language_map.looker_locale}='{{ _user_attributes['locale'] }}'
+    ;;
+
+  join: language_map {
+    fields: []
+    type: left_outer
+    sql_on: ${inventory_by_plant.language_spras} = ${language_map.language_key} ;;
+    relationship: many_to_one
+  }
 }
