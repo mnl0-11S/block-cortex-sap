@@ -14,10 +14,10 @@ persist_with: Mdl_Contraloria_Inventarios_default_datagroup
 named_value_format: Greek_Number_Format {
   value_format: "[>=1000000000]0.0,,,\"B\";[>=1000000]0.0,,\"M\";[>=1000]0.0,\"K\";0.0"
 }
-
+# ${language_map.looker_locale} = '{{ _user_attributes['locale'] }}'
 explore: inventory_metrics_overview {
   sql_always_where: ${inventory_metrics_overview.client_mandt} = '{{ _user_attributes['client_id_rep'] }}'
-  and ${language_map.looker_locale} = '{{ _user_attributes['locale'] }}'
+  and ${language_map.looker_locale} = 'es_ES'
   ;;
 
   join: inventory_by_plant {
@@ -37,10 +37,10 @@ explore: inventory_metrics_overview {
   }
 
 }
-
+# ${language_map.looker_locale}='{{ _user_attributes['locale'] }}'
 explore: inventory_by_plant {
   sql_always_where: ${inventory_by_plant.client_mandt} = '{{ _user_attributes['client_id_rep'] }}'
-        and ${language_map.looker_locale}='{{ _user_attributes['locale'] }}'
+        and ${language_map.looker_locale}='es_ES'
     ;;
 
   join: language_map {

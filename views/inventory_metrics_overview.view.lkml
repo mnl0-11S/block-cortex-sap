@@ -64,6 +64,12 @@ view: inventory_metrics_overview {
     hidden: no
   }
 
+  # dimension: target_currency {
+  #   type: string
+  #   sql: ${TABLE}.TargetCurrency_TCURR ;;
+  #   hidden: no
+  # }
+
   dimension: exchange_rate {
     type: number
     sql: ${TABLE}.ExchangeRate_UKURS ;;
