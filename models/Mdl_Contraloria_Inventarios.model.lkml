@@ -2,7 +2,6 @@ connection: "crp-pro-cx-semantica_mus_pro_sap_ctx"
 
 # include all the views
 include: "/views/**/*.view.lkml"
-include: "/inventory_managment/*"
 
 datagroup: Mdl_Contraloria_Inventarios_default_datagroup {
   # sql_trigger: SELECT MAX(id) FROM etl_log;;
