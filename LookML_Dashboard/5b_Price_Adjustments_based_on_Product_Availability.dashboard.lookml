@@ -119,7 +119,7 @@
   - name: Year
     title: Year
     type: field_filter
-    default_value: 2022/01/01 to 2022/12/22
+    default_value: 2024/11/01 to 2025/11/01
     allow_multiple_values: true
     required: false
     ui_config:
@@ -133,7 +133,7 @@
   - name: Currency
     title: Currency
     type: field_filter
-    default_value: USD
+    default_value: MXP
     allow_multiple_values: true
     required: true
     ui_config:
