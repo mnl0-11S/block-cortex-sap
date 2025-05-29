@@ -46,13 +46,13 @@ explore: data_intelligence_ar {
     fields: [] #this view used for currency convesion only so no fields need to be included in the explore
   }
 }
-
+#{{ _user_attributes['locale'] }}
 explore: sales_orders {
 
   join: language_map {
     fields: []
     type: left_outer
-    sql_on: ${language_map.looker_locale}='{{ _user_attributes['locale'] }}' ;;
+    sql_on: ${language_map.looker_locale}='es_ES' ;;
     relationship: many_to_one
   }
 
@@ -189,10 +189,10 @@ explore: sales_orders {
 }
 
 ########################################### Finanace Dashboards ########################################################################
-
+#{{ _user_attributes['locale'] }}
 explore: vendor_performance {
   sql_always_where: ${vendor_performance.client_mandt} = '{{ _user_attributes['client_id_rep'] }}'
-    and ${language_map.looker_locale}='{{ _user_attributes['locale'] }}'
+    and ${language_map.looker_locale}='es_ES'
     ;;
 
   join: language_map {
@@ -246,11 +246,11 @@ explore: materials_valuation_v2 {
 ########################################### Finanace Dashboards End ########################################################################
 
 ################################################ Supply Chain #######################################################
-
+#{{ _user_attributes['locale'] }}
 #cambiar el valor de looker_locale=es_ES
 explore: inventory_metrics_overview {
   sql_always_where: ${inventory_metrics_overview.client_mandt} = '{{ _user_attributes['client_id_rep'] }}'
-    and ${language_map.looker_locale}='{{ _user_attributes['locale'] }}';;
+    and ${language_map.looker_locale}='es_ES';;
 
   join: inventory_by_plant {
     type: left_outer
@@ -268,10 +268,10 @@ explore: inventory_metrics_overview {
     relationship: many_to_one
   }
 }
-
+#{{ _user_attributes['locale'] }}
 explore: inventory_by_plant {
   sql_always_where: ${inventory_by_plant.client_mandt} = '{{ _user_attributes['client_id_rep'] }}'
-        and ${language_map.looker_locale}='{{ _user_attributes['locale'] }}'
+        and ${language_map.looker_locale}='es_ES'
     ;;
 
   join: language_map {
