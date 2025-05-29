@@ -425,7 +425,7 @@ view: data_intelligence_ar {
 
     link: {
       label: "Day Sales Outstanding"
-      url: "/dashboards/cortex-prd-rep::day_sales_outstanding?"
+      url: "/dashboards/Mdl_Contraloria_Inventarios::day_sales_outstanding?"
     }
   }
   measure: DSO{
@@ -458,7 +458,7 @@ view: data_intelligence_ar {
 #     ;;
     link: {
       label: "Overdue Recievables"
-      url: "/dashboards/cortex-prd-rep::overdue_receivables?"
+      url: "/dashboards/Mdl_Contraloria_Inventarios::overdue_receivables?"
     }
   }
 
@@ -537,7 +537,7 @@ view: data_intelligence_ar {
 #     ;;
     link: {
       label: "Total Recievables"
-      url: "/dashboards/cortex-prd-rep::total_receivable?"
+      url: "/dashboards/Mdl_Contraloria_Inventarios::total_receivable?"
     }
   }
 
@@ -566,7 +566,7 @@ view: data_intelligence_ar {
 #     ;;
     link: {
       label: "Doubtful Recievables"
-      url: "/dashboards/cortex-prd-rep::doubtful_receivable?"
+      url: "/dashboards/Mdl_Contraloria_Inventarios::doubtful_receivable?"
     }
   }
 
