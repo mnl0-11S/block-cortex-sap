@@ -1,5 +1,5 @@
 constant: CONNECTION_NAME {
-  value: "crp-pro-cx-semantica_mus_pro_sap_ctx"
+  value: "crp-pro-cx-semantica_mus_pro_sap_ctx_reporting"
   export: override_required
 }
 
