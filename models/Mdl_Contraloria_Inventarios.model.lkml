@@ -49,12 +49,12 @@ explore: data_intelligence_ar {
 #{{ _user_attributes['locale'] }}
 explore: sales_orders {
 
-  join: language_map {
-    fields: []
-    type: left_outer
-    sql_on: ${language_map.looker_locale}='es_ES' ;;
-    relationship: many_to_one
-  }
+  # join: language_map {
+  #   fields: []
+  #   type: left_outer
+  #   sql_on: ${language_map.looker_locale}='es_ES' ;;
+  #   relationship: many_to_one
+  # }
 
   join: deliveries{
     type: left_outer
@@ -82,12 +82,14 @@ explore: sales_orders {
           and ${sales_orders.client_mandt}=${billing.client_mandt} ;;
   }
 
+# ${materials_md.language_spras}=${language_map.language_key} OG
   join: materials_md {
     type: left_outer
     relationship: one_to_many
     sql_on: ${sales_orders.material_number_matnr}=${materials_md.material_number_matnr}
           and ${sales_orders.client_mandt}=${materials_md.client_mandt} and
-          ${materials_md.language_spras}=${language_map.language_key};;
+          ${materials_md.language_spras}='S'
+          ;;
   }
 
   join: customers_md {
@@ -105,27 +107,31 @@ explore: sales_orders {
       and ${sales_orders.customer_kunnr} = ${customers_md_partner_function.customer_number_kunnr};;
   }
 
+# and ${countries_md.language_spras}=${language_map.language_key} OG
   join: countries_md {
     type: left_outer
     relationship: one_to_many
     sql_on: ${customers_md.country_key_land1}=${countries_md.country_key_land1}
           and ${countries_md.client_mandt}=${sales_orders.client_mandt}
-          and ${countries_md.language_spras}=${language_map.language_key} ;;
+          and ${countries_md.language_spras}='S' ;;
   }
 
+# and ${sales_organizations_md.language_spras}=${language_map.language_key} OG
   join: sales_organizations_md {
     type: left_outer
     relationship: one_to_many
     sql_on: ${sales_organizations_md.sales_org_vkorg}=${sales_orders.sales_organization_vkorg}
           and ${sales_organizations_md.client_mandt}=${sales_orders.client_mandt}
-          and ${sales_organizations_md.language_spras}=${language_map.language_key} ;;
+          and ${sales_organizations_md.language_spras}='S' ;;
   }
+
+  # and ${distribution_channels_md.language_spras}=${language_map.language_key} OG
   join: distribution_channels_md {
     type: left_outer
     relationship: one_to_many
     sql_on: ${distribution_channels_md.distribution_channel_vtweg}=${sales_orders.distribution_channel_vtweg}
             and  ${sales_orders.client_mandt}=${distribution_channels_md.client_mandt}
-            and ${distribution_channels_md.language_spras}=${language_map.language_key};;
+            and ${distribution_channels_md.language_spras}='S';;
   }
 
   join: sales_order_pricing {
@@ -152,12 +158,14 @@ explore: sales_orders {
             and ${sales_orders.item_posnr}=${sales_order_schedule_line_dt.sales_order_schedule_line_sales_document_item_posnr};;
   }
 
+
+# and ${language_map.language_key}=${divisions_md.language_key_spras} ;;
   join: divisions_md {
     type: left_outer
     relationship: one_to_many
     sql_on: ${sales_orders.client_mandt}=${divisions_md.client_mandt}
             and ${sales_orders.division_spart}=${divisions_md.division_spart}
-            and ${language_map.language_key}=${divisions_md.language_key_spras} ;;
+            and ${divisions_md.language_key_spras}='S' ;;
   }
 
   join: sales_order_header_status {
@@ -190,17 +198,18 @@ explore: sales_orders {
 
 ########################################### Finanace Dashboards ########################################################################
 #{{ _user_attributes['locale'] }}
+# and ${language_map.looker_locale}='es_ES'
 explore: vendor_performance {
   sql_always_where: ${vendor_performance.client_mandt} = '{{ _user_attributes['client_id_rep'] }}'
-    and ${language_map.looker_locale}='es_ES'
+
     ;;
 
-  join: language_map {
-    fields: []
-    type: left_outer
-    sql_on: ${vendor_performance.language_key} = ${language_map.language_key} ;;
-    relationship: many_to_one
-  }
+  # join: language_map {
+  #   fields: []
+  #   type: left_outer
+  #   sql_on: ${vendor_performance.language_key} = ${language_map.language_key} ;;
+  #   relationship: many_to_one
+  # }
 
   join: materials_valuation_v2 {
     type: left_outer
@@ -218,9 +227,7 @@ explore: days_payable_outstanding_v2 {
   sql_always_where: ${client_mandt} = '{{ _user_attributes['client_id_rep'] }}' ;;
 }
 
-
 explore: accounts_payable_v2 {
-
   sql_always_where: ${accounts_payable_v2.client_mandt} =  '{{ _user_attributes['client_id_rep'] }}';;
 }
 
@@ -228,14 +235,11 @@ explore: cash_discount_utilization {
   sql_always_where: ${client_mandt} = '{{ _user_attributes['client_id_rep'] }}';;
 }
 
-
 explore: accounts_payable_overview_v2 {
-
   sql_always_where: ${accounts_payable_overview_v2.client_mandt} =  '{{ _user_attributes['client_id_rep'] }}' ;;
 }
 
 explore: accounts_payable_turnover_v2 {
-
   sql_always_where: ${accounts_payable_turnover_v2.client_mandt} = '{{ _user_attributes['client_id_rep'] }}' ;;
 }
 
@@ -248,9 +252,12 @@ explore: materials_valuation_v2 {
 ################################################ Supply Chain #######################################################
 #{{ _user_attributes['locale'] }}
 #cambiar el valor de looker_locale=es_ES
+#comente join language_map y el filtro language_map.looker_locale para el metrics y by plant
+# --and ${language_map.looker_locale}='es_ES'
 explore: inventory_metrics_overview {
   sql_always_where: ${inventory_metrics_overview.client_mandt} = '{{ _user_attributes['client_id_rep'] }}'
-    and ${language_map.looker_locale}='es_ES';;
+
+    ;;
 
   join: inventory_by_plant {
     type: left_outer
@@ -261,25 +268,26 @@ explore: inventory_metrics_overview {
     ;;
   }
 
-  join: language_map {
-    fields: []
-    type: left_outer
-    sql_on: ${inventory_metrics_overview.language_spras} = ${language_map.language_key} ;;
-    relationship: many_to_one
-  }
+  # join: language_map {
+  #   fields: []
+  #   type: left_outer
+  #   sql_on: ${inventory_metrics_overview.language_spras} = ${language_map.language_key} ;;
+  #   relationship: many_to_one
+  # }
 }
 #{{ _user_attributes['locale'] }}
+# --and ${language_map.looker_locale}='es_ES'
 explore: inventory_by_plant {
   sql_always_where: ${inventory_by_plant.client_mandt} = '{{ _user_attributes['client_id_rep'] }}'
-        and ${language_map.looker_locale}='es_ES'
+
     ;;
 
-  join: language_map {
-    fields: []
-    type: left_outer
-    sql_on: ${inventory_by_plant.language_spras} = ${language_map.language_key} ;;
-    relationship: many_to_one
-  }
+  # join: language_map {
+  #   fields: []
+  #   type: left_outer
+  #   sql_on: ${inventory_by_plant.language_spras} = ${language_map.language_key} ;;
+  #   relationship: many_to_one
+  # }
 }
 
 ################################################ End of Supply Chain #################################################
