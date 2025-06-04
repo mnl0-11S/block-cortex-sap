@@ -605,6 +605,7 @@
         inventory_metrics_overview.average_inventory_turn]
       filters:
         inventory_metrics_overview.month_end_month: 6 months ago for 6 months
+        inventory_metrics_overview.average_inventory_turn: '>0'
       sorts: [inventory_metrics_overview.material_group_name_wgbez, inventory_metrics_overview.month_end_month]
       limit: 2000
       column_limit: 50
@@ -711,6 +712,9 @@
     col: 0
     width: 12
     height: 5
+
+
+
   - name: Inventory Management
     type: text
     title_text: Inventory Management
