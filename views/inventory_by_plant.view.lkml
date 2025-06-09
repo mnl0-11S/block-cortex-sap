@@ -11,6 +11,12 @@
       sql: CONCAT(${client_mandt},${material_number_matnr},${plant_werks},${batch_number_charg},${storage_location_lgort},${company_code_bukrs},${stock_characteristic},${cal_year},${cal_week});;
     }
 
+    dimension: is_latest_date {
+      type: yesno
+      sql:  ${TABLE}.WeekEndDate = (SELECT MAX (sub.WeekEndDate) FROM ${TABLE} AS sub) ;;
+      hidden: no
+    }
+
     dimension: amount_in_local_currency_dmbtr {
       type: number
       sql: ${TABLE}.AmountInLocalCurrency_DMBTR ;;

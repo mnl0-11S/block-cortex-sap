@@ -296,3 +296,7 @@ explore: global_currency_list_pdt {
   hidden: yes
   description: "Used to provide filter suggestions for Global Currency"
 }
+
+explore: pofulfillment {
+  sql_always_where: ${pofulfillment.client_mandt} = '{{ _user_attributes['client_id_rep'] }}' ;;
+}
