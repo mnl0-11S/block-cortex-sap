@@ -370,4 +370,44 @@ view: poorder_history {
   measure: count {
     type: count
   }
+  dimension: invoice_amount_in_po_currency_rewrb_num {
+    type: number
+    sql: SAFE_CAST(${TABLE}.InvoiceAmountInPoCurrency_REWRB as Numeric) ;;
+  }
+
+  measure: invoice_amount_in_po_currency_rewrb_avg  {
+    type: number
+    sql: AVG(${invoice_amount_in_po_currency_rewrb_num}) ;;
+  }
+
+  measure: avg_invoice_amount {
+    type: average
+    sql: SAFE_CAST(${invoice_amount_in_po_currency_rewrb} AS NUMERIC) ;;
+  }
+
+  dimension: vendor_account {
+    sql: ${TABLE}.VendorAccountNumber_LIFNR ;;
+  }
+
+# Campo auxiliar con año (útil para filtrar)
+  dimension: posting_year {
+    type: number
+    sql: EXTRACT(YEAR FROM ${posting_date_in_the_document_budat_date}) ;;
+  }
+
+  measure: total_quantity {
+    type: sum
+    sql:  ${quantity_menge};;
+  }
+
+  measure: total_amount {
+    type: sum
+    sql: ${amount_in_local_currency_dmbtr} ;;
+  }
+
+  measure: number_of_orders {
+    type: sum
+    sql: ${purchasing_document_number_ebeln} ;;
+  }
+
 }

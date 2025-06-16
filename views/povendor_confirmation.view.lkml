@@ -29,10 +29,6 @@ view: povendor_confirmation {
     type: string
     sql: ${TABLE}.DateCategoryOfDeliveryDateInVendorConfirmation_LPEIN ;;
   }
-  dimension: delivery_date_of_vendor_confirmation_eindt {
-    type: string
-    sql: ${TABLE}.DeliveryDateOfVendorConfirmation_EINDT ;;
-  }
   dimension: delivery_date_time_spot_in_vendor_confirmation_uzeit {
     type: string
     sql: ${TABLE}.DeliveryDateTimeSpotInVendorConfirmation_UZEIT ;;
@@ -144,4 +140,44 @@ view: povendor_confirmation {
   measure: count {
     type: count
   }
+
+  dimension: delivery_date_of_vendor_confirmation_eindt_casteo {
+    type: date
+    sql: PARSE_DATE('%d.%m.%Y',${TABLE}.DeliveryDateOfVendorConfirmation_EINDT) ;;
+  }
+  dimension: creation_date_of_confirmation_erdat_casteo {
+    type: date
+    sql: PARSE_DATE('%d.%m.%Y',${TABLE}.CreationDateOfConfirmation_ERDAT) ;;
+  }
+  dimension_group: delivery_date_of_vendor_confirmation_eindt {
+    type: time
+    timeframes: [raw, date, week, month, quarter, year]
+    convert_tz: no
+    datatype: date
+    sql: ${delivery_date_of_vendor_confirmation_eindt_casteo} ;;
+  }
+  dimension_group: creation_date_of_confirmation {
+    type: time
+    timeframes: [raw, date, week, month, quarter, year]
+    convert_tz: no
+    datatype: date
+    sql: PARSE_DATE('%d.%m.%Y', ${TABLE}.CreationDateOfConfirmation_ERDAT) ;;
+  }
+  dimension: creation_month {
+    type: string
+    sql: FORMAT_DATE('%Y-%m', PARSE_DATE('%d.%m.%Y', ${TABLE}.CreationDateOfConfirmation_ERDAT)) ;;
+  }
+  dimension: proveedor_con_nombre {
+    type: string
+    sql: CONCAT(${TABLE}.AccountNumberOfVendorOrCreditor_LIFNR, ' - ', ${TABLE}.NAME1) ;;
+  }
+  measure: avg_days_to_deliver {
+    type: average
+    sql: DATE_DIFF(${delivery_date_of_vendor_confirmation_eindt_casteo}, ${creation_date_of_confirmation_erdat_casteo},DAY) ;;
+    value_format_name: "decimal_1"
+    description: "Promedio de días entre la fecha de creación de la confirmación y la fecha de entrega comprometida."
+    drill_fields: [delivery_date_of_vendor_confirmation_eindt_casteo, creation_date_of_confirmation_erdat_casteo]
+  }
+
+
 }

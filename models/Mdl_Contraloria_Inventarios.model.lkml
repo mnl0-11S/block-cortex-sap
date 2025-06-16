@@ -300,3 +300,49 @@ explore: global_currency_list_pdt {
 explore: pofulfillment {
   sql_always_where: ${pofulfillment.client_mandt} = '{{ _user_attributes['client_id_rep'] }}' ;;
 }
+
+explore: pofulfillment_vendor_md {
+  view_name: pofulfillment
+  sql_always_where: ${pofulfillment.client_mandt} = '{{ _user_attributes['client_id_rep'] }}' ;;
+    join: vendors_md {
+    fields: [vendors_md.name1]
+    type: left_outer
+    sql_on: ${pofulfillment.vendor_account_number_lifnr} = ${vendors_md.account_number_of_vendor_or_creditor_lifnr}
+    and ${vendors_md.language_key_spras} = "S"
+    ;;
+    relationship: one_to_one
+  }
+}
+explore: poorder_history_materials_md{
+  view_name: poorder_history
+  sql_always_where: ${poorder_history.client_mandt} = '{{ _user_attributes['client_id_rep'] }}';;
+
+  join: materials_md {
+    fields: [materials_md.material_text_maktx]
+    type: left_outer
+    sql_on: ${poorder_history.material_number_matnr} = ${materials_md.material_number_matnr} and ${materials_md.language_spras} = 'S' ;;
+    relationship: one_to_one
+  }
+
+  join: vendors_md {
+    fields: [vendors_md.addr_name1]
+    type: left_outer
+    sql: ${poorder_history.vendor_account_number_lifnr} = ${vendors_md.account_number_of_vendor_or_creditor_lifnr} and ${vendors_md.language_key_spras} = 'S' ;;
+    relationship: one_to_one
+  }
+}
+
+explore: poorder_history {
+  sql_always_where: ${poorder_history.client_mandt} = '{{ _user_attributes['client_id_rep'] }}' ;;
+}
+
+explore: poschedule {
+  sql_always_where: ${poschedule.client_mandt} = '{{ _user_attributes['client_id_rep'] }}' ;;
+
+
+}
+
+
+explore: povendor_confirmation {
+  sql_always_where: ${povendor_confirmation.client_mandt} = '{{ _user_attributes['client_id_rep'] }}' ;;
+}

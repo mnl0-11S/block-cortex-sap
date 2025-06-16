@@ -1,4 +1,5 @@
 view: poschedule {
+
   sql_table_name: `crp-pro-cx-semantica.mus_pro_sap_ctx_reporting.POSchedule` ;;
 
   dimension: apo_location_type_cd_loctype {
@@ -322,4 +323,88 @@ view: poschedule {
   measure: count {
     type: count
   }
-}
+
+  dimension: item_delivery_date_eindt_convert {
+    type: date
+    sql: ${TABLE}.ItemDeliveryDate_EINDT ;;
+  }
+  dimension: order_date_of_schedule_line_bedat_convert {
+    type: date
+    sql: ${TABLE}.OrderDateOfScheduleLine_BEDAT ;;
+  }
+
+  measure: avg_days_to_deliver {
+    type: average
+    sql: DATE_DIFF(${item_delivery_date_eindt_convert},${order_date_of_schedule_line_bedat_convert},DAY) ;;
+  }
+  measure: cantidad_programada {
+    type: sum
+    sql: ${TABLE}.ScheduledQuantity_MENGE ;;
+  }
+  measure: cantidad_recibida {
+    type: sum
+    sql: ${TABLE}.QuantityOfGoodsReceived_WEMNG ;;
+  }
+  measure: cumplimiento_pct {
+    type: number
+    sql: SAFE_DIVIDE(${cantidad_recibida},${cantidad_programada}) ;;
+    value_format_name: decimal_3
+  }
+
+  dimension: delay_days {
+    type: number
+    sql: DATE_DIFF(${item_delivery_date_eindt_convert},${order_date_of_schedule_line_bedat_convert},DAY) ;;
+  }
+
+  dimension: order_date_of_schedule_line_bedat_semana {
+    type: number
+    sql: EXTRACT(WEEK FROM ${order_date_of_schedule_line_bedat_convert}) ;;
+  }
+
+
+
+
+  # --- Dimensiones para el cálculo de Lead Time ---
+  # Lógica original (no recomendada para cálculos precisos)
+  dimension: diferencia_anios {
+    type: number
+    sql: EXTRACT(YEAR FROM ${TABLE}.ItemDeliveryDate_EINDT) - EXTRACT(YEAR FROM ${TABLE}.OrderDateOfScheduleLine_BEDAT);;
+    value_format_name: decimal_0
+  }
+  dimension: num_semana_solicitud {
+    type:  number
+    sql: EXTRACT(WEEK FROM ${TABLE}.OrderDateOfScheduleLine_BEDAT) ;;
+  }
+  dimension: num_semana_despacho {
+    type: number
+    sql: EXTRACT(WEEK FROM ${TABLE}.ItemDeliveryDate_EINDT) ;;
+  }
+  # Lead Time con lógica original (propensa a errores)
+  dimension: lead_time_original {
+    type: number
+    sql:
+      CASE
+        WHEN ${diferencia_anios} = 0 THEN
+          (${num_semana_despacho} - ${num_semana_solicitud} + 1)
+        ELSE
+          (${num_semana_solicitud} + ((52 * ${diferencia_anios}) - ${num_semana_solicitud}) + 1)
+      END ;;
+    description: "Calcula el lead time en semana con la lógica original"
+    value_format_name: decimal_0
+    label: "Lead Time Semana (Original)"
+  }
+  # Lead Time con lógica corregida y precisa (Recomendado)
+  dimension: lead_time_en_semanas {
+    type: number
+    description: "Calcula el lead time en semanas de forma precisa, dividiendo los días totales por 7."
+    label: "Lead Time (Semanas)"
+    # La función DATEDIFF puede variar según tu base de datos.
+    # El CAST es para asegurar una división con decimales.
+    sql:
+      CAST(
+        DATE_DIFF(${TABLE}.OrderDateOfScheduleLine_BEDAT, ${TABLE}.ItemDeliveryDate_EINDT,WEEK)
+      AS FLOAT64) / 7.0 ;;
+    # Es recomendable usar un formato decimal para ver fracciones de semana.
+      value_format_name: decimal_1
+    }
+  }

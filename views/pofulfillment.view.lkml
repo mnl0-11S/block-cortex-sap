@@ -123,4 +123,40 @@ view: pofulfillment {
   measure: count {
     type: count
   }
+  measure: sum_total_received_qty {
+   type: sum
+  sql: ${total_received_qty} ;;
+  }
+  measure: sum_total_scheduled_qty {
+    type: sum
+    sql:  ${total_scheduled_qty} ;;
+  }
+
+  measure: porcentaje_cumplimiento_global {
+    type: number
+    sql: (${sum_total_received_qty} * 100.0) / NULLIF(${sum_total_scheduled_qty}, 0)  ;;
+    value_format_name: percent_1
+  }
+
+  measure: cumplimiento_global {
+    type: number
+    sql: ${sum_total_received_qty}  / NULLIF(${sum_total_scheduled_qty}, 0)  ;;
+  }
+
+  measure: valor_neto_total {
+    type: sum
+    sql: ${net_order_valuein_pocurrency_netwr} ;;
+  }
+
+  measure: total_ordenes_incompletas {
+    type: sum
+    sql: ${document_number_ebeln;;
+  }
+
+
+
+
+
+
+
 }
