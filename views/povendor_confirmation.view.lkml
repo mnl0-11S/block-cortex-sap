@@ -26,7 +26,7 @@ view: povendor_confirmation {
     sql: ${TABLE}.ConfirmationCategory_EBTYP ;;
   }
   dimension: creation_date_of_confirmation_erdat {
-    label: "Fecha de creación de confirmación de pedido"
+    label: "Fecha de creación de confirmación de pedido (erdat)"
     description: "Fecha en que se generó la confirmación por parte del proveedor."
     type: string
     sql: ${TABLE}.CreationDateOfConfirmation_ERDAT ;;
@@ -56,7 +56,7 @@ view: povendor_confirmation {
     sql: ${TABLE}.DeliveryHasStatusinPlant_IMWRK ;;
   }
   dimension: delivery_item_vbelp {
-    label: "Posición de entrega"
+    label: "Posición de entrega (vbelp)"
     description: "Número de posición de la entrega."
     type: string
     sql: ${TABLE}.DeliveryItem_VBELP ;;
@@ -68,7 +68,7 @@ view: povendor_confirmation {
     sql: ${TABLE}.DeliveryItem_VBELP_ST ;;
   }
   dimension: delivery_vbeln {
-    label: "Entrega"
+    label: "Entrega (vbeln)"
     description: "Número del documento de entrega."
     type: string
     sql: ${TABLE}.Delivery_VBELN ;;
@@ -176,7 +176,7 @@ view: povendor_confirmation {
     sql: ${TABLE}.SequentialNumberOfVendorConfirmation_ETENS ;;
   }
   dimension: sequential_number_of_vendor_confirmation_ref_etens {
-    label: "Número actual de la confirmación de pedido"
+    label: "Número actual de la confirmación de pedido (etens)"
     description: "Número secuencial de referencia de la confirmación del proveedor."
     type: string
     sql: ${TABLE}.SequentialNumberOfVendorConfirmation_REF_ETENS ;;
@@ -218,13 +218,13 @@ view: povendor_confirmation {
     sql: PARSE_DATE('%d.%m.%Y',${TABLE}.DeliveryDateOfVendorConfirmation_EINDT) ;;
   }
   dimension: creation_date_of_confirmation_erdat_casteo {
-    label: "Fecha de creación de confirmación de pedido"
+    label: "Fecha de creación de confirmación de pedido (erdat) casteo"
     description: "Fecha de creación de la confirmación del proveedor (formato de fecha)."
     type: date
     sql: PARSE_DATE('%d.%m.%Y',${TABLE}.CreationDateOfConfirmation_ERDAT) ;;
   }
   dimension_group: delivery_date_of_vendor_confirmation_eindt {
-    label: "Fecha de entrega de confirmación de pedido"
+    label: "Fecha de entrega de confirmación de pedido (eindt)"
     description: "Dimensiones de tiempo basadas en la fecha de entrega confirmada por el proveedor."
     type: time
     timeframes: [raw, date, week, month, quarter, year]
@@ -242,7 +242,7 @@ view: povendor_confirmation {
     sql: PARSE_DATE('%d.%m.%Y', ${TABLE}.CreationDateOfConfirmation_ERDAT) ;;
   }
   dimension: creation_month {
-    label: "Fecha de creación de confirmación de pedido"
+    label: "Fecha de creación de confirmación de pedido mes"
     description: "Mes y año en que se creó la confirmación del proveedor."
     type: string
     sql: FORMAT_DATE('%Y-%m', PARSE_DATE('%d.%m.%Y', ${TABLE}.CreationDateOfConfirmation_ERDAT)) ;;
@@ -263,6 +263,8 @@ view: povendor_confirmation {
     drill_fields: [delivery_date_of_vendor_confirmation_eindt_casteo, creation_date_of_confirmation_erdat_casteo]
   }
   dimension: concat_lifnr_name1 {
+    label: "Proveedor"
+    description: "Id Proveedor mas nombre del proveedor"
     type: string
     sql: CONCAT(${account_number_of_vendor_or_creditor_lifnr},' ', ${name1})  ;;
   }
