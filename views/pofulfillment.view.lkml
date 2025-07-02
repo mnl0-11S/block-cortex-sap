@@ -134,8 +134,8 @@ view: pofulfillment {
 
   measure: porcentaje_cumplimiento_global {
     type: number
-    sql: (${sum_total_received_qty} * 100.0) / NULLIF(${sum_total_scheduled_qty}, 0)  ;;
-    value_format_name: percent_1
+    sql: (${sum_total_received_qty} * 100) / NULLIF(${sum_total_scheduled_qty}, 0)  ;;
+    value_format_name: percent_0
   }
 
   measure: cumplimiento_global {

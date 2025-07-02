@@ -298,14 +298,17 @@ explore: global_currency_list_pdt {
 }
 
 explore: pofulfillment {
-  sql_always_where: ${pofulfillment.client_mandt} = '{{ _user_attributes['client_id_rep'] }}' ;;
+  sql_always_where: ${pofulfillment.client_mandt} = '{{ _user_attributes['client_id_rep'] }}'
+  and ${pofulfillment.vendor_account_number_lifnr} NOT IN ('L090', 'U090') ;;
 }
 
 explore: pofulfillment_vendor_md {
   view_name: pofulfillment
-  sql_always_where: ${pofulfillment.client_mandt} = '{{ _user_attributes['client_id_rep'] }}' ;;
+  sql_always_where: ${pofulfillment.client_mandt} = '{{ _user_attributes['client_id_rep'] }}'
+  and ${pofulfillment.vendor_account_number_lifnr} NOT IN ('L090', 'U090')
+  ;;
     join: vendors_md {
-    fields: [vendors_md.name1]
+    fields: [vendors_md.name1, vendors_md.name1_account_number_of_vendor_or_creditor_lifnr_concat]
     type: left_outer
     sql_on: ${pofulfillment.vendor_account_number_lifnr} = ${vendors_md.account_number_of_vendor_or_creditor_lifnr}
     and ${vendors_md.language_key_spras} = "S"
@@ -325,7 +328,7 @@ explore: poorder_history_materials_md{
   }
 
   join: vendors_md {
-    fields: [vendors_md.addr_name1]
+    fields: [vendors_md.addr_name1, vendors_md.name1_account_number_of_vendor_or_creditor_lifnr_concat]
     type: left_outer
     sql: ${poorder_history.vendor_account_number_lifnr} = ${vendors_md.account_number_of_vendor_or_creditor_lifnr} and ${vendors_md.language_key_spras} = 'S' ;;
     relationship: one_to_one

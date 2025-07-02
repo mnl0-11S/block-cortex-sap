@@ -382,6 +382,7 @@ view: vendors_md {
     sql: ${TABLE}.MicroCompanyIndicator_MIN_COMP ;;
   }
   dimension: name1 {
+    label: "Nombre Proveedor"
     type: string
     sql: ${TABLE}.NAME1 ;;
   }
@@ -783,5 +784,11 @@ view: vendors_md {
   }
   measure: count {
     type: count
+  }
+  dimension: name1_account_number_of_vendor_or_creditor_lifnr_concat {
+    label: "Proveedor"
+    description: "Nombre proveedor concatenado con el ID (lifnr)"
+    type: string
+    sql: CONCAT(${account_number_of_vendor_or_creditor_lifnr}, ' ', ${name1}) ;;
   }
 }
