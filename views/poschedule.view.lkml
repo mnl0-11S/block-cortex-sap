@@ -458,7 +458,8 @@ view: poschedule {
 
   dimension: order_date_of_schedule_line_bedat_semana {
     type: number
-    sql: EXTRACT(WEEK FROM ${order_date_of_schedule_line_bedat_convert}) ;;
+    sql: COALESCE(EXTRACT(WEEK FROM ${order_date_of_schedule_line_bedat_convert}), 0) ;;
+    #se agrega la semana 0 para los registros con valores nulos
   }
 
 
