@@ -337,9 +337,7 @@ explore: poorder_history {
 }
 
 explore: poschedule {
-  sql_always_where: ${poschedule.client_mandt} = '{{ _user_attributes['client_id_rep'] }}' ;;
-
-
+  sql_always_where: ${poschedule.client_mandt} = '{{ _user_attributes['client_id_rep'] }}' and ${poschedule.order_date_of_schedule_line_bedat_convert} IS NOT NULL ;;
 }
 
 
