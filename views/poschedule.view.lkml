@@ -32,12 +32,6 @@ view: poschedule {
     type: string
     sql: ${TABLE}.CancellationThreatMade_CNCL_ANCMNT_DONE ;;
   }
-  dimension: category_of_delivery_date_lpein {
-    label: "Tipo de fecha de la fecha de entrega"
-    description: "Categoría o tipo de fecha de entrega, por ejemplo, fecha de entrega"
-    type: string
-    sql: ${TABLE}.CategoryOfDeliveryDate_LPEIN ;;
-  }
   dimension: client_mandt {
     label: "Mandante"
     description: "Identificador del mandante en el sistema SAP."
@@ -460,6 +454,22 @@ view: poschedule {
     type: number
     sql: EXTRACT(WEEK FROM ${order_date_of_schedule_line_bedat_convert}) ;;
     # allow_fill: no
+  }
+
+  dimension: category_of_delivery_date_lpein {
+    label: "Tipo de fecha de la fecha de entrega"
+    description: "Categoría o tipo de fecha de entrega, por ejemplo, fecha de entrega"
+    type: string
+    sql: CASE ${TABLE}.CategoryOfDeliveryDate_LPEIN
+          WHEN '1' THEN 'Dia'
+          WHEN '2' THEN 'Semana'
+          WHEN '3' THEN 'Mes'
+          ELSE 'Año'
+        END
+
+
+
+     ;;
   }
 
 
