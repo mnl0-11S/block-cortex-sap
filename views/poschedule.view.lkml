@@ -3,110 +3,164 @@ view: poschedule {
   sql_table_name: `crp-pro-cx-semantica.mus_pro_sap_ctx_reporting.POSchedule` ;;
 
   dimension: apo_location_type_cd_loctype {
+    label: "Tipo de ubicación en el APO"
+    description: "Indica el tipo de ubicación definida en el sistema APO."
     type: string
     sql: ${TABLE}.ApoLocationType_CD_LOCTYPE ;;
   }
   dimension: batch_number_charg {
+    label: "Número de lote"
+    description: "Número de identificación del lote de material."
     type: string
     sql: ${TABLE}.BatchNumber_CHARG ;;
   }
   dimension: bom_explosion_number_sernr {
+    label: "Número de serie"
+    description: "Número de serie del componente de la lista de materiales."
     type: string
     sql: ${TABLE}.BomExplosionNumber_SERNR ;;
   }
   dimension: budget_type_budg_type {
+    label: "Clase de presupuesto"
+    description: "Define el tipo de presupuesto asignado."
     type: string
     sql: ${TABLE}.BudgetType_BUDG_TYPE ;;
   }
   dimension: cancellation_threat_made_cncl_ancmnt_done {
+    label: "Amenaza de anulación realizada"
+    description: "Indica si se ha emitido una amenaza de anulación para el pedido."
     type: string
     sql: ${TABLE}.CancellationThreatMade_CNCL_ANCMNT_DONE ;;
   }
   dimension: category_of_delivery_date_lpein {
+    label: "Tipo de fecha de la fecha de entrega"
+    description: "Categoría o tipo de fecha de entrega, por ejemplo, fecha de entrega"
     type: string
     sql: ${TABLE}.CategoryOfDeliveryDate_LPEIN ;;
   }
   dimension: client_mandt {
+    label: "Mandante"
+    description: "Identificador del mandante en el sistema SAP."
     type: string
     sql: ${TABLE}.Client_MANDT ;;
   }
   dimension: committed_date_dat01 {
+    label: "Fecha confirmada"
+    description: "Fecha confirmada para la entrega del material."
     type: string
     sql: ${TABLE}.CommittedDate_DAT01 ;;
   }
   dimension: committed_quantity_mng02 {
+    label: "Cantidad confirmada"
+    description: "Cantidad de material confirmada para la entrega."
     type: number
     sql: ${TABLE}.CommittedQuantity_MNG02 ;;
   }
   dimension: components_chkom {
+    label: "Componentes"
+    description: "Indicador de componentes."
     type: string
     sql: ${TABLE}.Components_CHKOM ;;
   }
   dimension: creation_date_of_reminder_message_record_dng_date {
+    label: "Fecha de creación del registro de mensajes de reclamación"
+    description: "Fecha en que se creó el registro del mensaje de reclamación."
     type: string
     sql: ${TABLE}.CreationDateOfReminderMessageRecord_DNG_DATE ;;
   }
   dimension: creation_indicator__purchase_requisitionschedule_lines___estkz {
+    label: "Indicador de creación"
+    description: "Indicador que muestra cómo se creó la línea de reparto (manual, automática, etc.)."
     type: string
     sql: ${TABLE}.CreationIndicator__purchaseRequisitionscheduleLines___ESTKZ ;;
   }
   dimension: creation_time_of_reminder_message_record_dng_time {
+    label: "Hora de creación del registro de mensajes de reclamación"
+    description: "Hora en que se creó el registro del mensaje de reclamación."
     type: string
     sql: ${TABLE}.CreationTimeOfReminderMessageRecord_DNG_TIME ;;
   }
   dimension: dateline_id__guid___dl_id {
+    label: "ID de secuencia fechas (ID único)"
+    description: "Identificador único de la secuencia de fechas."
     type: string
     sql: ${TABLE}.DatelineId__guid___DL_ID ;;
   }
   dimension: delivery_date_time_spot_uzeit {
+    label: "Hora de la fecha de entrega"
+    description: "Hora específica en la fecha de entrega."
     type: string
     sql: ${TABLE}.DeliveryDateTimeSpot_UZEIT ;;
   }
   dimension: delivery_schedule_line_counter_etenr {
+    label: "Contador de repartos"
+    description: "Contador de la línea de reparto de entrega."
     type: string
     sql: ${TABLE}.DeliveryScheduleLineCounter_ETENR ;;
   }
   dimension: description_of_ageographical_route_geo_route {
+    label: "Descripción de una ruta geográfica"
+    description: "Descripción de la ruta geográfica utilizada para el transporte."
     type: string
     sql: ${TABLE}.DescriptionOfAGeographicalRoute_GEO_ROUTE ;;
   }
   dimension: forwarding_agent_tsp {
+    label: "Transportista"
+    description: "Identificador del transportista o agente de expedición."
     type: string
     sql: ${TABLE}.ForwardingAgent_TSP ;;
   }
   dimension: goods_issue_date_wadat {
+    label: "Fecha de salida de mercancías"
+    description: "Fecha en que las mercancías salieron del almacén."
     type: string
     sql: ${TABLE}.GoodsIssueDate_WADAT ;;
   }
   dimension: goods_receipt_end_date_eldat {
+    label: "Fecha final entrada mercancías"
+    description: "Fecha prevista de finalización de la entrada de mercancías."
     type: string
     sql: ${TABLE}.GoodsReceiptEndDate_ELDAT ;;
   }
   dimension: goods_receipt_end_time__local__eluhr {
+    label: "Hora final entrada mercancías"
+    description: "Hora local prevista de finalización de la entrada de mercancías."
     type: string
     sql: ${TABLE}.GoodsReceiptEndTime__local__ELUHR ;;
   }
   dimension: goods_traffic_type_gts_ind {
+    label: "Clase de circulación de mercancías"
+    description: "Clasificación del tipo de tráfico de mercancías para servicios de comercio global (GTS)."
     type: string
     sql: ${TABLE}.GoodsTrafficType_GTS_IND ;;
   }
   dimension: handover_date_at_the_handover_location_handoverdate {
+    label: "Fecha de entrega para lugar de entrega"
+    description: "Fecha en que se realizará la entrega en el lugar de traspaso."
     type: string
     sql: ${TABLE}.HandoverDateAtTheHandoverLocation_HANDOVERDATE ;;
   }
   dimension: handover_time_at_the_handover_location_handovertime {
+    label: "Hora traspaso a lugar traspaso"
+    description: "Hora en que se realizará la entrega en el lugar de traspaso."
     type: string
     sql: ${TABLE}.HandoverTimeAtTheHandoverLocation_HANDOVERTIME ;;
   }
   dimension: ind_reserv_not_applicable_to_mrp_purc_req_not_created_nodisp {
+    label: "Ind: Reserva no relev. p.planif.nec. no se crea sol.ped."
+    description: "Indicador que muestra si una reserva no es relevante para la planificación de necesidades de material (MRP) y si no se crea una solicitud de pedido."
     type: string
     sql: ${TABLE}.Ind_ReservNotApplicableToMrpPurcReqNotCreated_NODISP ;;
   }
   dimension: issued_quantity_wamng {
+    label: "Cantidad de salida"
+    description: "Cantidad de mercancías que han salido del almacén."
     type: number
     sql: ${TABLE}.IssuedQuantity_WAMNG ;;
   }
   dimension_group: item_delivery_date_eindt {
+    label: "Fecha de entrega de posición"
+    description: "Fecha prevista de entrega de la posición del pedido."
     type: time
     timeframes: [raw, date, week, month, quarter, year]
     convert_tz: no
@@ -114,62 +168,92 @@ view: poschedule {
     sql: ${TABLE}.ItemDeliveryDate_EINDT ;;
   }
   dimension: item_number_of_purchase_requisition_bnfpo {
+    label: "Número de posición de la solicitud de pedido"
+    description: "Número de la posición dentro de la solicitud de pedido."
     type: string
     sql: ${TABLE}.ItemNumberOfPurchaseRequisition_BNFPO ;;
   }
   dimension: item_number_of_purchasing_document_ebelp {
+    label: "Número de posición del documento de compras"
+    description: "Número de la posición dentro del documento de compras (ej. pedido)."
     type: string
     sql: ${TABLE}.ItemNumberOfPurchasingDocument_EBELP ;;
   }
   dimension: loading_date_lddat {
+    label: "Fecha de carga"
+    description: "Fecha en que la mercancía fue cargada para el transporte."
     type: string
     sql: ${TABLE}.LoadingDate_LDDAT ;;
   }
   dimension: loading_time__local_time_relating_to_ashipping_point___lduhr {
+    label: "Hora de carga"
+    description: "Hora local de carga de la mercancía en el punto de expedición."
     type: string
     sql: ${TABLE}.LoadingTime__localTimeRelatingToAShippingPoint___LDUHR ;;
   }
   dimension: location_number_in_apo_cd_locno {
+    label: "Número de ubicación en el APO"
+    description: "Número de identificación de la ubicación en el sistema APO."
     type: string
     sql: ${TABLE}.LocationNumberInApo_CD_LOCNO ;;
   }
   dimension: material_availability_date_mbdat {
+    label: "Fecha de puesta a disposición del material"
+    description: "Fecha en que el material estará disponible para ser utilizado o expedido."
     type: string
     sql: ${TABLE}.MaterialAvailabilityDate_MBDAT ;;
   }
   dimension: material_staging_time_mbuhr {
+    label: "Hora de puesta a disposición del material"
+    description: "Hora en que el material estará listo para su puesta a disposición."
     type: string
     sql: ${TABLE}.MaterialStagingTime_MBUHR ;;
   }
   dimension: month_of_item_delivery_date_eindt {
+    label: "Fecha de entrega de posición"
+    description: "Mes de la fecha de entrega de la posición del pedido."
     type: number
     sql: ${TABLE}.MonthOfItemDeliveryDate_EINDT ;;
   }
   dimension: month_of_order_date_of_schedule_line_bedat {
+    label: "Fecha de pedido del reparto"
+    description: "Mes de la fecha de creación del pedido del reparto."
     type: number
     sql: ${TABLE}.MonthOfOrderDateOfScheduleLine_BEDAT ;;
   }
   dimension: no_of_remindersexpediters_for_schedule_line_mahnz {
+    label: "Número de reclamaciones de un reparto"
+    description: "Cantidad de recordatorios o reclamaciones emitidas para una línea de reparto."
     type: number
     sql: ${TABLE}.NoOfRemindersexpeditersForScheduleLine_MAHNZ ;;
   }
   dimension: number_of_current_date_shifts_dateshift_number {
+    label: "Cantidad de aplazamientos de fechas actuales"
+    description: "Número de veces que la fecha actual ha sido aplazada."
     type: number
     sql: ${TABLE}.NumberOfCurrentDateShifts_DATESHIFT_NUMBER ;;
   }
   dimension: number_of_quota_arrangement_qunum {
+    label: "Número de la regulación por cuotas"
+    description: "Identificador de la regulación por cuotas aplicable."
     type: string
     sql: ${TABLE}.NumberOfQuotaArrangement_QUNUM ;;
   }
   dimension: number_of_reservationdependent_requirements_rsnum {
+    label: "Número de la reserva/las necesidades secundarias"
+    description: "Número de la reserva o de las necesidades secundarias asociadas."
     type: string
     sql: ${TABLE}.NumberOfReservationdependentRequirements_RSNUM ;;
   }
   dimension: number_of_serial_numbers_anzsn {
+    label: "Cantidad de números de serie"
+    description: "Cantidad total de números de serie asociados al material."
     type: number
     sql: ${TABLE}.NumberOfSerialNumbers_ANZSN ;;
   }
   dimension_group: order_date_of_schedule_line_bedat {
+    label: "Fecha de pedido del reparto"
+    description: "Fecha en que se creó el pedido o la línea de reparto."
     type: time
     timeframes: [raw, date, week, month, quarter, year]
     convert_tz: no
@@ -177,35 +261,50 @@ view: poschedule {
     sql: ${TABLE}.OrderDateOfScheduleLine_BEDAT ;;
   }
   dimension: otb_check_status_otb_status {
+    label: "Status verificación DPC"
+    description: "Estado de la verificación del presupuesto disponible para compromiso (OTB)."
     type: string
     sql: ${TABLE}.OtbCheckStatus_OTB_STATUS ;;
   }
   dimension: otb_currency_otb_curr {
+    label: "Moneda DPC"
+    description: "Moneda utilizada para el presupuesto disponible para compromiso (OTB)."
     type: string
     sql: ${TABLE}.OtbCurrency_OTB_CURR ;;
   }
   dimension: previous_delivery_date_altdt {
+    label: "Fecha entrega anterior"
+    description: "Fecha de entrega previa registrada antes de una modificación."
     type: string
     sql: ${TABLE}.PreviousDeliveryDate_ALTDT ;;
   }
   dimension: previous_quantity__delivery_schedule_lines___ameng {
+    label: "Cantidad anterior en repartos"
+    description: "Cantidad registrada previamente en las líneas de reparto antes de una modificación."
     type: number
     sql: ${TABLE}.PreviousQuantity__deliveryScheduleLines___AMENG ;;
   }
   dimension: production_version_verid {
+    label: "Versión de fabricación"
+    description: "Versión de fabricación utilizada para el material."
     type: string
     sql: ${TABLE}.ProductionVersion_VERID ;;
   }
   dimension: purchase_order_not_transferred_to_scem_no_scem {
+    label: "Pedido no se transfiere a SCEM"
+    description: "Indicador si el pedido de compra no ha sido transferido al sistema SCEM (Supply Chain Event Management)."
     type: string
     sql: ${TABLE}.PurchaseOrderNotTransferredToScem_NO_SCEM ;;
   }
   dimension: purchase_requisition_number_banfn {
+    label: "Número de la solicitud de pedido"
+    description: "Número de identificación de la solicitud de pedido."
     type: string
     sql: ${TABLE}.PurchaseRequisitionNumber_BANFN ;;
   }
   dimension: purchasing_document_number_ebeln {
     type: string
+    label: "Numero de documento de compra"
     sql: ${TABLE}.PurchasingDocumentNumber_EBELN ;;
   }
   dimension: quantity_delivered__stock_transfer___glmng {
@@ -334,6 +433,7 @@ view: poschedule {
   }
 
   measure: avg_days_to_deliver {
+    label: "Promedio de dias para entrega"
     type: average
     sql: DATE_DIFF(${item_delivery_date_eindt_convert},${order_date_of_schedule_line_bedat_convert},DAY) ;;
   }
