@@ -418,10 +418,14 @@ view: poschedule {
   }
 
   dimension: item_delivery_date_eindt_convert {
+    label: "Fecha Entrega Comprometida"
+    description: "Fecha en la que el proveedor se ha comprometido a entregar la cantidad de materiales"
     type: date
     sql: ${TABLE}.ItemDeliveryDate_EINDT ;;
   }
   dimension: order_date_of_schedule_line_bedat_convert {
+    label: "Fecha de Entrega Programada"
+    description: "Fecha del reparto o fecha de la linea del plan de entregas"
     type: date
     sql: ${TABLE}.OrderDateOfScheduleLine_BEDAT ;;
   }
@@ -440,17 +444,23 @@ view: poschedule {
     sql: ${TABLE}.QuantityOfGoodsReceived_WEMNG ;;
   }
   measure: cumplimiento_pct {
+    label: "Cumplimiento Entrega"
+    description: "Cumplimiento de entrega en porcentaje"
     type: number
     sql: SAFE_DIVIDE(${cantidad_recibida},${cantidad_programada}) ;;
-    value_format_name: decimal_3
+    value_format_name: percent_0
   }
 
   dimension: delay_days {
+    label: "Dias de Retraso"
     type: number
     sql: DATE_DIFF(${item_delivery_date_eindt_convert},${order_date_of_schedule_line_bedat_convert},DAY) ;;
+    value_format_name: decimal_0
   }
 
   dimension: order_date_of_schedule_line_bedat_semana {
+    label: "Numero de semana"
+    # description: ""
     type: number
     sql: EXTRACT(WEEK FROM ${order_date_of_schedule_line_bedat_convert}) ;;
     # allow_fill: no
