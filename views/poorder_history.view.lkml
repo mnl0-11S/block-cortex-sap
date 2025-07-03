@@ -401,6 +401,7 @@ view: poorder_history {
   }
 
   measure: total_amount {
+    label: "Cantidad Total"
     type: sum
     sql: ${amount_in_local_currency_dmbtr} ;;
   }
