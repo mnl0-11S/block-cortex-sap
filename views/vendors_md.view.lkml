@@ -30,6 +30,7 @@ view: vendors_md {
     sql: ${TABLE}.Addr_District_CITY2 ;;
   }
   dimension: addr_name1 {
+    label: "Nombre Proveedor"
     type: string
     sql: ${TABLE}.Addr_NAME1 ;;
   }

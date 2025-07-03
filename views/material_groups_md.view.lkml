@@ -38,6 +38,7 @@ view: material_groups_md {
     sql: ${TABLE}.MaterialGroup_MATKL ;;
   }
   dimension: material_group_name_wgbez {
+    label: "Grupo de Materiales"
     type: string
     sql: ${TABLE}.MaterialGroupName_WGBEZ ;;
   }

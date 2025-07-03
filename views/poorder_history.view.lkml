@@ -217,6 +217,7 @@ view: poorder_history {
     sql: ${TABLE}.PostedSecurityRetentionAmountInCompanyCodeCurrency_RETAMTP_LC ;;
   }
   dimension_group: posting_date_in_the_document_budat {
+    label: "Fecha Documento"
     type: time
     timeframes: [raw, date, week, month, quarter, year]
     convert_tz: no
@@ -388,27 +389,30 @@ view: poorder_history {
   dimension: vendor_account {
     sql: ${TABLE}.VendorAccountNumber_LIFNR ;;
   }
-
 # Campo auxiliar con año (útil para filtrar)
   dimension: posting_year {
     type: number
     sql: EXTRACT(YEAR FROM ${posting_date_in_the_document_budat_date}) ;;
   }
-
   measure: total_quantity {
     type: sum
     sql:  ${quantity_menge};;
   }
-
   measure: total_amount {
     label: "Cantidad Total"
     type: sum
     sql: ${amount_in_local_currency_dmbtr} ;;
   }
-
   measure: number_of_orders {
     type: sum
     sql: ${purchasing_document_number_ebeln} ;;
   }
+  measure: number_of_orders_distinc {
+    label: "Numero de Ordenes"
+    type: count_distinct
+    sql: ${purchasing_document_number_ebeln} ;;
+  }
+
+
 
 }
