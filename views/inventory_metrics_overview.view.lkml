@@ -241,6 +241,7 @@
     }
 
     dimension: inventory_value {
+      label: "Valor de inventario"
       type: number
       sql: ${TABLE}.InventoryValue ;;
     }

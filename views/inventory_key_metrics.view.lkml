@@ -94,6 +94,7 @@ view: inventory_key_metrics {
     sql: ${TABLE}.InventoryTurnByMonth ;;
   }
   dimension: inventory_value {
+    label: "Valor de inventario"
     type: number
     sql: ${TABLE}.InventoryValue ;;
   }
