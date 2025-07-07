@@ -4,8 +4,6 @@
         ;;
     }
 
-    fields_hidden_by_default: no
-
     dimension: key {
       type: string
       primary_key: yes
@@ -48,20 +46,17 @@
       sql: ${TABLE}.CompanyCode_BUKRS ;;
       label: "Company Code"
       #primary_key: yes
-      hidden: no
     }
 
     dimension: company_text_butxt {
       type: string
       label: "Company Name"
       sql: ${TABLE}.CompanyText_BUTXT ;;
-      hidden: no
     }
 
     dimension: target_currency {
       type: string
       sql: ${TABLE}.TargetCurrency_TCURR ;;
-      hidden: no
     }
 
     dimension: exchange_rate {
@@ -82,7 +77,6 @@
     dimension: country_key_land1 {
       type: string
       sql: ${TABLE}.CountryKey_LAND1 ;;
-      hidden: no
     }
 
     dimension: currency_key_waers {
@@ -94,7 +88,6 @@
       type: number
       value_format: "0"
       sql: ${TABLE}.DaysOfSupplyAsOfToday ;;
-      hidden: no
     }
 
     measure: average_days_of_supply {
@@ -104,7 +97,6 @@
       value_format: "0"
       filters: [days_of_supply : ">=0"]
       drill_fields: [material_group_name_wgbez,material_type,material_number_matnr,material_text_maktx,average_days_of_supply]
-      hidden: no
     }
 
     dimension: fiscal_period {
@@ -137,7 +129,6 @@
         label: "{{ inventory_metrics_overview.material_group_name_wgbez._value }}"
         url: "{{drill_fields._link}}"
       }
-      hidden: no
       filters: [inventory_turn: ">=0"]
       #drill_fields: [material_group_name_wgbez,plant_name2_name2,material_text_maktx,average_inventory_turn]
     }
@@ -155,14 +146,12 @@
     dimension: material_group_matkl {
       type: string
       sql: ${TABLE}.MaterialGroup_MATKL ;;
-      hidden: no
     }
 
     dimension: material_group_name_wgbez {
       type: string
       label: "Material Group"
       sql: ${TABLE}.MaterialGroupName_WGBEZ ;;
-      hidden: no
     }
 
     dimension: material_number_matnr {
@@ -175,26 +164,22 @@
       type: string
       sql: ${TABLE}.MaterialText_MAKTX ;;
       label: "Material Name"
-      hidden: no
     }
 
     dimension: material_name {
       type: string
       label: "Material"
       sql: ${TABLE}.MaterialText_MAKTX ;;
-      hidden: no
     }
 
     dimension: material_type_mtart {
       type: string
       sql: ${TABLE}.MaterialType_MTART ;;
-      hidden: no
     }
 
     dimension: material_type {
       type: string
       sql: ${TABLE}.DescriptionOfMaterialType_MTBEZ ;;
-      hidden: no
     }
 
     dimension_group: month_end {
@@ -210,14 +195,12 @@
       convert_tz: no
       datatype: date
       sql: ${TABLE}.MonthEndDate ;;
-      hidden: no
     }
 
     dimension: plant_name2_name2 {
       type: string
       sql: ${TABLE}.Plant_Name2_NAME2 ;;
       label: "Plant Name"
-      hidden: no
     }
 
     dimension: plant_werks {
@@ -255,7 +238,6 @@
       type: sum
       sql: ${inventory_value_target_currency} ;;
       value_format_name: Greek_Number_Format
-      hidden: no
       link: {
         label: "Stock Value Details"
         url: "/dashboards/cortex_sap_operational::stock_value_details?Company+Name={{ _filters['inventory_metrics_overview.company_text_butxt']| url_encode }}&Currency={{ _filters['inventory_metrics_overview.target_currency']| url_encode }}&Plant={{ _filters['inventory_metrics_overview.plant_name2_name2']| url_encode }}&Material={{ _filters['inventory_metrics_overview.material_text_maktx']| url_encode }}&Country={{ _filters['inventory_metrics_overview.country_key_land1']| url_encode }}&Stock+Type={{ _filters['inventory_by_plant.stock_characteristic']| url_encode }}&Material+Type={{ _filters['inventory_metrics_overview.material_type']| url_encode }}"
@@ -278,7 +260,6 @@
       type: sum
       value_format_name: Greek_Number_Format
       sql: ${inventory_value} ;;
-      hidden: no
     }
 
     dimension: slow_moving_inventory {
@@ -295,7 +276,6 @@
       type: sum
       sql: ${slow_moving_inventory_target_currency} ;;
       filters: [slow_moving_inventory_target_currency : ">0"]
-      hidden: no
       value_format_name: Greek_Number_Format
       drill_fields: [material_name,sum_slow_moving_inventory_target_currency]
     }
