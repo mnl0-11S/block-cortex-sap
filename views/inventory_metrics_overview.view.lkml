@@ -4,7 +4,7 @@
         ;;
     }
 
-    fields_hidden_by_default: yes
+    fields_hidden_by_default: no
 
     dimension: key {
       type: string
@@ -303,7 +303,7 @@
     measure: sum_slow_moving_inventory {
       type: sum
       sql: ${slow_moving_inventory} ;;
-      #value_format_name: Greek_Number_Format
+      # value_format_name: Greek_Number_Format
     }
 
     dimension: stock_on_hand {
