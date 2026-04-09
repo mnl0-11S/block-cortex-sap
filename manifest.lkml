@@ -9,7 +9,7 @@ constant: GCP_PROJECT {
 }
 
 constant: REPORTING_DATASET {
-  value: "CDC_DATASAP"
+  value: "CORTEX_SAP_REPORTING"
   export: override_required
 }
 
